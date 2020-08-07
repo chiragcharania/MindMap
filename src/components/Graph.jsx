@@ -1,7 +1,7 @@
 import React from 'react';
 import Tree from 'react-d3-tree';
 
-const Graph = ({ data }) => {
+const Graph = ({ data, onClickNode }) => {
   return (
     <div id="treeWrapper" style={{ width: '100%', height: '100%' }}>
       <Tree
@@ -32,12 +32,13 @@ const Graph = ({ data }) => {
         translate={{
           x: document.getElementById('treeWrapper')
             ? document.getElementById('treeWrapper').clientWidth / 2
-            : window.innerWidth / 2,
+            : window.innerWidth / 4,
           y: document.getElementById('treeWrapper')
             ? document.getElementById('treeWrapper').clientHeight / 2
-            : window.innerHeight / 2
+            : window.innerHeight / 4
         }}
         data={data}
+        onClick = {onClickNode}
       />
     </div>
   );

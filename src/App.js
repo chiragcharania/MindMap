@@ -8,6 +8,7 @@ function Node(value) {
   this.value = value;
   this.left = null;
   this.right = null;
+  
 }
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
         children: children.length && [traverse(obj.left)].length ? children : []
       };
     }
+
+
+
     if (obj.right) {
       traverse(obj.right);
     }
@@ -89,6 +93,11 @@ function App() {
     setVerify(false)
     return data;
   };
+    
+   let onClickNode = () =>{
+     console.log("Works");
+	}
+ 
 
   return (
     <main className="App">
