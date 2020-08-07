@@ -8,16 +8,17 @@ function Node(value) {
   this.value = value;
   this.left = null;
   this.right = null;
-  
+
 }
 
 function App() {
   const [current, setCurrent] = useState('');
-  const [display,setdisplay] = useState([]); 
+  const [display, setdisplay] = useState([]);
   const [data, setData] = useState({ root: null });
-  const [verify,setVerify] = useState(false)
-  const [text,setText] = useState()
-  const array = []
+  const [verify, setVerify] = useState(false);
+  const [text, setText] = useState();
+  const [mindMapData, setMindMapData] = useState('');
+  const array = [];
   //Tree traversal function
   function traverse(obj) {
     if (!obj) return null;
@@ -49,7 +50,7 @@ function App() {
       traverse(obj.right);
     }
   }
- 
+
   const formatData = data => {
     const res = Object.keys(data).map(key => {
       return {
@@ -93,11 +94,48 @@ function App() {
     setVerify(false)
     return data;
   };
+
+  const createMindMap = (obj) => {
+    let mindMap;
+    //check whether parent there or not
+    //parent is present
+    if (obj.parent) { 
+      let childNode = [];
+      if (obj.children) {
+        obj.children.forEach(child => {
+          childNode.push({ name: child.name });
+        });
+      }
+      mindMap = {
+        name: obj.parent.name,
+        children: [{
+          name: obj.name,
+          children: childNode
+        }]
+      }
+
+    }
+    // if no parent
+    else{
+      let childNode = [];
+      if (obj.children) {
+        obj.children.forEach(child => {
+          childNode.push({ name: child.name });
+        });
+      }
+      mindMap = {
+          name: obj.name,
+          children: childNode
+      }
+
+
+    }
+    setMindMapData(mindMap);
+    console.log("Now, ",mindMapData );
+    // mindMapData = mindMap;
     
-   let onClickNode = () =>{
-     console.log("Works");
-	}
- 
+  }
+
 
   return (
     <main className="App">
@@ -106,10 +144,11 @@ function App() {
         setCurrent={setCurrent}
         insert={insert}
         data={data}
-        array = {display}
-        text = {text}
+        array={display}
+        text={text}
       />
-      <Graph data={formatData(data)} />
+      <Graph data={formatData(data)} onClickNode={createMindMap} />
+      {mindMapData ? (<Graph data={mindMapData} />) : null}
     </main>
   );
 }
