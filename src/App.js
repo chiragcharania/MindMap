@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Row, Col, Container } from 'react-bootstrap';
+
 
 import Graph from './components/Graph';
 import Header from './components/Header';
@@ -99,7 +101,7 @@ function App() {
     let mindMap;
     //check whether parent there or not
     //parent is present
-    if (obj.parent) { 
+    if (obj.parent) {
       let childNode = [];
       if (obj.children) {
         obj.children.forEach(child => {
@@ -116,7 +118,7 @@ function App() {
 
     }
     // if no parent
-    else{
+    else {
       let childNode = [];
       if (obj.children) {
         obj.children.forEach(child => {
@@ -124,31 +126,40 @@ function App() {
         });
       }
       mindMap = {
-          name: obj.name,
-          children: childNode
+        name: obj.name,
+        children: childNode
       }
 
 
     }
     setMindMapData(mindMap);
-    console.log("Now, ",mindMapData );
+    console.log("Now, ", mindMapData);
     // mindMapData = mindMap;
-    
+
   }
 
 
   return (
     <main className="App">
-      <Header
-        current={current}
-        setCurrent={setCurrent}
-        insert={insert}
-        data={data}
-        array={display}
-        text={text}
-      />
-      <Graph data={formatData(data)} onClickNode={createMindMap} />
-      {mindMapData ? (<Graph data={mindMapData} />) : null}
+      <Container className="container-fullSize">
+        <Row>
+          <Header
+            current={current}
+            setCurrent={setCurrent}
+            insert={insert}
+            data={data}
+            array={display}
+            text={text}
+          /></Row>
+        <Row className="purple-bg nodeFont">
+          <Col className="height-100 width-100 remove-padding">
+            <Graph data={formatData(data)} onClickNode={createMindMap} />
+          </Col>
+          <Col className="height-100 width-100 remove-padding">
+            {mindMapData ? (<Graph data={mindMapData} bgColor="teal-bg" />) : null}
+          </Col>
+        </Row>
+      </Container>
     </main>
   );
 }
