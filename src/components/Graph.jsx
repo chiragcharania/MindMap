@@ -8,17 +8,19 @@ const Graph = ({ data, onClickNode, bgColor }) => {
         bgColor ?
           (<span className="blackFont">MindMap </span>)
           :
-          (<span>Note: For best results add nodes in order F, C, I, B, D, G, J </span>)
+          (<span>Note: For best results, add nodes in the following order: F, C, I, B, D, G, J. </span>)
       }
       <Tree className="nodeFont"
         styles={{
           nodes: {
             node: {
+               
               circle: {
                 fill: '#ffd303',
                 name: {
                   fontFamily: `'Roboto', sans-serif`,
                   fontSize: '2rem'
+                  
                 }
               }
             },
