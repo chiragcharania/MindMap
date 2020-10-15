@@ -10,14 +10,12 @@ function Node(value) {
   this.value = value;
   this.left = null;
   this.right = null;
-
 }
 
 function App() {
   const [current, setCurrent] = useState('');
   const [display, setdisplay] = useState([]);
   const [data, setData] = useState({ root: null });
-  const [verify, setVerify] = useState(false);
   const [text, setText] = useState();
   const [mindMapData, setMindMapData] = useState('');
   const array = [];
@@ -45,8 +43,6 @@ function App() {
         children: children.length && [traverse(obj.left)].length ? children : []
       };
     }
-
-
 
     if (obj.right) {
       traverse(obj.right);
@@ -93,7 +89,6 @@ function App() {
         }
       }
     }
-    setVerify(false)
     return data;
   };
 
@@ -134,8 +129,6 @@ function App() {
     }
     setMindMapData(mindMap);
     console.log("Now, ", mindMapData);
-    // mindMapData = mindMap;
-
   }
 
 
