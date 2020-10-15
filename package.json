@@ -1,6 +1,6 @@
 {
   "homepage":"https://chiragcharania.github.io/MindMap/", 
-  "name": "binary-search-tree",
+  "name": "mindmap",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
